@@ -28,7 +28,20 @@ function Board({ xIsNext, squares, onPlay }) {
   if (winner) {
     status = "Winner: " + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    // When no one wins, display a message about the result being a draw
+    let draw = true;
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i] == null){
+        draw = false;
+        break;
+      }
+    }
+    if (draw){
+      status = "Draw";
+    }
+    else{
+      status = "Next player: " + (xIsNext ? "X" : "O");
+    }
   }
 
   return (
